@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미, 나의 음역대 · Voice Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- Navigation -->
+<nav class="top-nav">
+  <div class="nav-logo"><span class="note">미</span><span>Voice Journal</span></div>
+  <div class="nav-center" id="nav-center">
+    <span class="current-section" id="current-section">Home</span>
+  </div>
+  <button class="menu-toggle" id="menu-toggle" aria-label="전체 메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Full Menu Overlay -->
+<div class="menu-overlay" id="menu-overlay">
+  <div class="menu-panel">
+    <div class="menu-head">
+      <div>
+        <div class="menu-eyebrow">NAVIGATION</div>
+        <h2 class="menu-heading">전체 메뉴</h2>
+      </div>
+      <button class="menu-close" id="menu-close" aria-label="메뉴 닫기">✕</button>
+    </div>
+
+    <div class="menu-groups">
+      <div class="menu-group">
+        <h3 class="menu-group-title">매일 쓰는 기능</h3>
+        <a class="menu-item" href="#daily-broadcast" data-label="오늘의 멘트">
+          <span class="menu-item-icon">🎙</span>
+          <div class="menu-item-text">
+            <strong>오늘의 기상 캐스터 멘트</strong>
+            <span>매일 날씨에 맞춘 아나운서 대본</span>
+          </div>
+        </a>
+        <a class="menu-item" href="#pitch" data-label="피치 모니터">
+          <span class="menu-item-icon">◉</span>
+          <div class="menu-item-text">
+            <strong>실시간 피치 모니터</strong>
+            <span>내 목소리가 지금 어느 음인지 확인</span>
+          </div>
+        </a>
+        <a class="menu-item" href="#twister" data-label="잰말 놀이">
+          <span class="menu-item-icon">✓</span>
+          <div class="menu-item-text">
+            <strong>잰말 놀이</strong>
+            <span>20개 문장, 체크하며 연습 기록</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="menu-group">
+        <h3 class="menu-group-title">훈련 · 연습</h3>
+        <a class="menu-item" href="#daily" data-label="일상 습관">
+          <span class="menu-item-icon">☼</span>
+          <div class="menu-item-text">
+            <strong>일상 습관 8가지</strong>
+            <span>평소 음역대 유지하는 방법</span>
+          </div>
+        </a>
+        <a class="menu-item" href="#vocal" data-label="발성 훈련">
+          <span class="menu-item-icon">♪</span>
+          <div class="menu-item-text">
+            <strong>발성 훈련</strong>
+            <span>복식호흡, 허밍, 립트릴, 하품 발성</span>
+          </div>
+        </a>
+        <a class="menu-item" href="#articulation" data-label="발음 훈련">
+          <span class="menu-item-icon">가</span>
+          <div class="menu-item-text">
+            <strong>발음 훈련</strong>
+            <span>가갸거겨 조음표와 입체조</span>
+          </div>
+        </a>
+        <a class="menu-item" href="#scripts" data-label="아나운서 멘트">
+          <span class="menu-item-icon">📰</span>
+          <div class="menu-item-text">
+            <strong>아나운서 멘트 연습</strong>
+            <span>뉴스, 날씨, 내레이션, 행사 대본</span>
+          </div>
+        </a>
+        <a class="menu-item" href="#modeling" data-label="모델링 연습">
+          <span class="menu-item-icon">🎯</span>
+          <div class="menu-item-text">
+            <strong>모델링 연습법</strong>
+            <span>닮고 싶은 목소리 체화하는 4단계</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="menu-group">
+        <h3 class="menu-group-title">참고 · 자료</h3>
+        <a class="menu-item" href="#resources" data-label="자료실">
+          <span class="menu-item-icon">▶</span>
+          <div class="menu-item-text">
+            <strong>영상 자료실</strong>
+            <span>뉴스·인터뷰·예능 클립 큐레이션</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Back to Top -->
+<button class="float-btn" id="float-btn" aria-label="맨 위로" style="display: none;">
+  <span>↑</span>
+</button>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Voice, rediscovered</div>
+    <h1>내 목소리를<br>다시 <span class="accent">찾다.</span></h1>
+    <p class="hero-text">
+      귀에 편안하고 신뢰감이 있는 목소리.
+      이 음역대를 일상에 스며들게 하기 위한 나만의 훈련 공간.
+    </p>
+    <div class="hero-meta">
+      <span>EST. 2026</span>
+      <span>TONE · E NOTE</span>
+      <span>DAILY PRACTICE</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-quote-card">
+      <div class="quote-mark">"</div>
+      <p class="hero-quote-text">
+        Finding your voice isn't about changing who you are.<br>
+        <em>It's about letting who you are finally speak.</em>
+      </p>
+      <div class="quote-divider"></div>
+      <p class="hero-quote-kr">
+        내 목소리는<br>나를 닮아간다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Dashboard Quick Access -->
+<section class="dashboard">
+  <div class="dashboard-header">
+    <span class="dash-eyebrow">DASHBOARD</span>
+    <h2 class="dash-title">오늘, 어디부터 시작할까요?</h2>
+  </div>
+
+  <div class="dash-grid">
+    <!-- Row 1: Daily Use -->
+    <a class="dash-card featured" href="#daily-broadcast">
+      <div class="dash-card-head">
+        <span class="dash-icon">🎙</span>
+        <span class="dash-badge">매일</span>
+      </div>
+      <h3>오늘의 멘트</h3>
+      <p>날씨에 맞춘 3줄 대본</p>
+    </a>
+
+    <a class="dash-card featured" href="#pitch">
+      <div class="dash-card-head">
+        <span class="dash-icon">◉</span>
+        <span class="dash-badge live">LIVE</span>
+      </div>
+      <h3>피치 모니터</h3>
+      <p>실시간 음역대 확인</p>
+    </a>
+
+    <a class="dash-card featured" href="#twister">
+      <div class="dash-card-head">
+        <span class="dash-icon">✓</span>
+        <span class="dash-badge" id="dash-twister-count">0/20</span>
+      </div>
+      <h3>잰말 놀이</h3>
+      <p>체크하며 연습 기록</p>
+    </a>
+
+    <!-- Row 2: Training -->
+    <a class="dash-card" href="#vocal">
+      <div class="dash-card-head"><span class="dash-icon">♪</span></div>
+      <h3>발성 훈련</h3>
+      <p>호흡 · 허밍 · 립트릴</p>
+    </a>
+
+    <a class="dash-card" href="#articulation">
+      <div class="dash-card-head"><span class="dash-icon">가</span></div>
+      <h3>발음 훈련</h3>
+      <p>조음표 · 입체조</p>
+    </a>
+
+    <a class="dash-card" href="#scripts">
+      <div class="dash-card-head"><span class="dash-icon">📰</span></div>
+      <h3>아나운서 멘트</h3>
+      <p>뉴스 · 내레이션 · 행사</p>
+    </a>
+
+    <a class="dash-card" href="#modeling">
+      <div class="dash-card-head"><span class="dash-icon">🎯</span></div>
+      <h3>모델링 연습</h3>
+      <p>4단계 따라 하기</p>
+    </a>
+
+    <a class="dash-card" href="#daily">
+      <div class="dash-card-head"><span class="dash-icon">☼</span></div>
+      <h3>일상 습관</h3>
+      <p>8가지 체크리스트</p>
+    </a>
+
+    <!-- Row 3: Reference -->
+    <a class="dash-card subtle" href="#resources">
+      <div class="dash-card-head"><span class="dash-icon">▶</span></div>
+      <h3>영상 자료실</h3>
+      <p>큐레이션 클립 8개</p>
+    </a>
+  </div>
+</section>
+
+<!-- Daily Weather Broadcast -->
+<section class="content-section daily-broadcast-section" id="daily-broadcast">
+  <div class="broadcast-card">
+    <div class="broadcast-header">
+      <div class="broadcast-label-wrap">
+        <span class="on-air">● ON AIR</span>
+        <span class="broadcast-title">오늘의 기상 캐스터 멘트</span>
+      </div>
+      <div class="broadcast-date" id="broadcast-date">—</div>
+    </div>
+
+    <div class="broadcast-body">
+      <div class="weather-summary" id="weather-summary">
+        <span class="weather-icon">☀</span>
+        <span class="weather-text">날씨 정보를 입력해주세요</span>
+      </div>
+
+      <div class="broadcast-script" id="broadcast-script">
+        <p>오늘의 멘트가 아직 없어요. 아래 "새 멘트 추가" 버튼으로 저장해보세요.</p>
+      </div>
+
+      <div class="broadcast-actions">
+        <button class="broadcast-btn" id="broadcast-copy">📋 대본 복사</button>
+        <button class="broadcast-btn" id="broadcast-read">🎤 연습 모드</button>
+        <button class="broadcast-btn primary" id="broadcast-add">＋ 새 멘트 추가</button>
+      </div>
+    </div>
+
+    <!-- Add Form (hidden by default) -->
+    <div class="broadcast-form" id="broadcast-form" style="display: none;">
+      <h4>새 멘트 저장</h4>
+      <div class="form-row">
+        <label>날짜</label>
+        <input type="date" id="form-date">
+      </div>
+      <div class="form-row">
+        <label>날씨 요약</label>
+        <input type="text" id="form-summary" placeholder="예) 맑음 → 오후 구름많음 / 11°~22° / 건조특보">
+      </div>
+      <div class="form-row">
+        <label>멘트 (/ 표시로 쉼, // 긴 쉼)</label>
+        <textarea id="form-script" rows="8" placeholder="오늘 김포는 / 아침 11도로 선선하게 시작해 / 낮 최고 22도까지 오르며..."></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="broadcast-btn primary" id="form-save">저장</button>
+        <button class="broadcast-btn" id="form-cancel">취소</button>
+      </div>
+    </div>
+
+    <!-- Archive -->
+    <div class="broadcast-archive">
+      <div class="archive-header">
+        <h4>지난 방송 아카이브</h4>
+        <span class="archive-count" id="archive-count">0개 저장됨</span>
+      </div>
+      <div class="archive-list" id="archive-list">
+        <p class="archive-empty">아직 아카이브가 비어 있어요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Daily Practice -->
+<section class="content-section" id="daily">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅰ. DAILY HABIT</span>
+    </div>
+    <div>
+      <h2 class="section-title">일상에서 음역대 유지하기</h2>
+      <p class="section-subtitle">— small habits, lasting voice</p>
+    </div>
+  </div>
+
+  <div class="practice-list">
+    <div class="practice-item">
+      <div class="practice-num">01</div>
+      <div class="practice-content">
+        <h4>아침 허밍 워밍업</h4>
+        <p>눈 뜨자마자 편안한 음으로 <span class="highlight">"음~~"</span> 3번. 손을 가슴에 대고 진동이 느껴지는 음이 내 미 음역대예요. 오늘의 기준점을 잡는 의식이에요.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">02</div>
+      <div class="practice-content">
+        <h4>첫 인사 톤 체크</h4>
+        <p>하루 중 가장 먼저 하는 <span class="highlight">"안녕하세요"</span>의 톤을 의식하세요. 무의식적으로 높아지는 순간이 많거든요. 한 톤 내려서 시작하는 연습.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">03</div>
+      <div class="practice-content">
+        <h4>문장 끝 내리기</h4>
+        <p>한국어 습관상 문장 끝이 올라가기 쉬워요. "~요?" 아닌 단정문은 <span class="highlight">끝을 살짝 내려서</span> 마무리하면 신뢰감이 확 달라져요.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">04</div>
+      <div class="practice-content">
+        <h4>복식 호흡으로 말하기</h4>
+        <p>배로 숨 쉬면 성대가 이완되며 자연스레 낮은 음역대로 내려가요. 말하기 전 <span class="highlight">코로 깊게 한 번</span> 들이마시는 습관을 들이세요.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">05</div>
+      <div class="practice-content">
+        <h4>하루 한 번 녹음</h4>
+        <p>하루에 한 번, 짧은 말이라도 녹음해서 들어보세요. <span class="highlight">내가 듣는 내 목소리</span>와 <span class="highlight">남이 듣는 내 목소리</span>의 차이를 좁혀가는 가장 빠른 길이에요.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">06</div>
+      <div class="practice-content">
+        <h4>피치 앱 활용</h4>
+        <p>"Vocal Pitch Monitor" 같은 앱으로 실시간 내 음을 확인하세요. <span class="highlight">E3~E4 범위</span>를 눈으로 확인하며 말하는 연습이 체화를 돕습니다.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">07</div>
+      <div class="practice-content">
+        <h4>긴장 상황 알아차리기</h4>
+        <p>긴장하면 목소리가 올라가요. 회의·발표 직전 <span class="highlight">어깨를 내리고</span> 숨을 한 번 내쉬며 미 음역대를 되찾는 리셋 루틴.</p>
+      </div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-num">08</div>
+      <div class="practice-content">
+        <h4>천천히 말하기</h4>
+        <p>말이 빨라지면 톤도 올라가요. <span class="highlight">평소보다 20% 느리게</span>가 딱 좋은 속도예요. 여유가 곧 낮은 음역을 만듭니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Vocalization -->
+<section class="content-section" id="vocal">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅱ. VOCALIZATION</span>
+    </div>
+    <div>
+      <h2 class="section-title">발성 훈련</h2>
+      <p class="section-subtitle">— breath is the root of voice</p>
+    </div>
+  </div>
+
+  <div class="vocal-grid">
+    <div class="vocal-block">
+      <h3>복식 호흡 훈련</h3>
+      <span class="subtitle">Diaphragmatic breathing</span>
+      <ol>
+        <li>누운 채로 배 위에 손을 올리고 코로 4초 들이마시기. 배가 풍선처럼 부풀어야 해요.</li>
+        <li>2초 멈춘 뒤, 입으로 <strong>"스~~~"</strong> 소리를 내며 8초 동안 천천히 내쉬기.</li>
+        <li>10회 반복. 점점 내쉬는 시간을 12초, 15초로 늘려가세요.</li>
+      </ol>
+      <div class="sound-drill">스 ─── 스 ─── 스 ───</div>
+    </div>
+
+    <div class="vocal-block">
+      <h3>허밍 스케일</h3>
+      <span class="subtitle">Humming on E note</span>
+      <ol>
+        <li>입을 다물고 <strong>"음~"</strong> 편안한 음으로 길게 내기.</li>
+        <li>입술과 코가 간질거리면 제대로 공명 중이에요. 그 음을 기억하세요.</li>
+        <li>같은 음에서 <strong>"마~", "모~", "무~"</strong>로 확장해 입을 자연스럽게 열어갑니다.</li>
+      </ol>
+      <div class="sound-drill">음 ─ 마 ─ 모 ─ 무</div>
+    </div>
+
+    <div class="vocal-block">
+      <h3>립 트릴 & 텅 트릴</h3>
+      <span class="subtitle">Lip & tongue rolls</span>
+      <ol>
+        <li>입술을 가볍게 붙이고 <strong>"푸르르르르~"</strong>하며 떨기. 성대 긴장을 풀어요.</li>
+        <li>혀를 굴려 <strong>"뜨르르르르~"</strong>. 혀 근육이 유연해져 발음이 또렷해져요.</li>
+        <li>각 30초씩, 음을 낮게 내려가며 연습하세요.</li>
+      </ol>
+      <div class="sound-drill">푸르르르 · 뜨르르르</div>
+    </div>
+
+    <div class="vocal-block">
+      <h3>하품 발성</h3>
+      <span class="subtitle">Yawn sigh — open throat</span>
+      <ol>
+        <li>크게 하품하듯 입을 벌리고, 그 상태로 <strong>"아~~"</strong> 소리를 내리긋듯 내기.</li>
+        <li>성대가 최대로 열린 상태라 풍부한 공명이 생겨요.</li>
+        <li>높은 음에서 낮은 음으로 미끄러지듯 내려오는 연습.</li>
+      </ol>
+      <div class="sound-drill">아─────↘</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Articulation -->
+<section class="content-section" id="articulation">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅲ. ARTICULATION</span>
+    </div>
+    <div>
+      <h2 class="section-title">발음 훈련</h2>
+      <p class="section-subtitle">— sharpen every syllable</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 20px; color: var(--ink-soft); max-width: 700px;">
+    한 글자씩 과장된 입모양으로, 거울을 보며 또박또박 읽어주세요.
+    매일 3회씩 반복하면 혀와 입술 근육이 단련됩니다.
+  </p>
+
+  <div class="articulation-grid">
+    <div class="ga-cell">가</div><div class="ga-cell">갸</div><div class="ga-cell">거</div><div class="ga-cell">겨</div><div class="ga-cell">고</div><div class="ga-cell">교</div><div class="ga-cell">구</div><div class="ga-cell">규</div><div class="ga-cell">그</div><div class="ga-cell">기</div>
+    <div class="ga-cell">나</div><div class="ga-cell">냐</div><div class="ga-cell">너</div><div class="ga-cell">녀</div><div class="ga-cell">노</div><div class="ga-cell">뇨</div><div class="ga-cell">누</div><div class="ga-cell">뉴</div><div class="ga-cell">느</div><div class="ga-cell">니</div>
+    <div class="ga-cell">다</div><div class="ga-cell">댜</div><div class="ga-cell">더</div><div class="ga-cell">뎌</div><div class="ga-cell">도</div><div class="ga-cell">됴</div><div class="ga-cell">두</div><div class="ga-cell">듀</div><div class="ga-cell">드</div><div class="ga-cell">디</div>
+    <div class="ga-cell">라</div><div class="ga-cell">랴</div><div class="ga-cell">러</div><div class="ga-cell">려</div><div class="ga-cell">로</div><div class="ga-cell">료</div><div class="ga-cell">루</div><div class="ga-cell">류</div><div class="ga-cell">르</div><div class="ga-cell">리</div>
+    <div class="ga-cell">마</div><div class="ga-cell">먀</div><div class="ga-cell">머</div><div class="ga-cell">며</div><div class="ga-cell">모</div><div class="ga-cell">묘</div><div class="ga-cell">무</div><div class="ga-cell">뮤</div><div class="ga-cell">므</div><div class="ga-cell">미</div>
+    <div class="ga-cell">바</div><div class="ga-cell">뱌</div><div class="ga-cell">버</div><div class="ga-cell">벼</div><div class="ga-cell">보</div><div class="ga-cell">뵤</div><div class="ga-cell">부</div><div class="ga-cell">뷰</div><div class="ga-cell">브</div><div class="ga-cell">비</div>
+    <div class="ga-cell">사</div><div class="ga-cell">샤</div><div class="ga-cell">서</div><div class="ga-cell">셔</div><div class="ga-cell">소</div><div class="ga-cell">쇼</div><div class="ga-cell">수</div><div class="ga-cell">슈</div><div class="ga-cell">스</div><div class="ga-cell">시</div>
+    <div class="ga-cell">아</div><div class="ga-cell">야</div><div class="ga-cell">어</div><div class="ga-cell">여</div><div class="ga-cell">오</div><div class="ga-cell">요</div><div class="ga-cell">우</div><div class="ga-cell">유</div><div class="ga-cell">으</div><div class="ga-cell">이</div>
+    <div class="ga-cell">자</div><div class="ga-cell">쟈</div><div class="ga-cell">저</div><div class="ga-cell">져</div><div class="ga-cell">조</div><div class="ga-cell">죠</div><div class="ga-cell">주</div><div class="ga-cell">쥬</div><div class="ga-cell">즈</div><div class="ga-cell">지</div>
+    <div class="ga-cell">차</div><div class="ga-cell">챠</div><div class="ga-cell">처</div><div class="ga-cell">쳐</div><div class="ga-cell">초</div><div class="ga-cell">쵸</div><div class="ga-cell">추</div><div class="ga-cell">츄</div><div class="ga-cell">츠</div><div class="ga-cell">치</div>
+  </div>
+
+  <div class="vocal-grid">
+    <div class="vocal-block">
+      <h3>입 체조</h3>
+      <span class="subtitle">Mouth warm-up</span>
+      <ol>
+        <li><strong>아 에 이 오 우</strong> — 입을 최대한 크게, 과장되게.</li>
+        <li><strong>이-우-이-우</strong> — 입꼬리 좌우로 빠르게 교차.</li>
+        <li><strong>혀 돌리기</strong> — 입 다물고 혀로 이 바깥을 한 방향으로 10번.</li>
+      </ol>
+    </div>
+    <div class="vocal-block">
+      <h3>모음 삼각형</h3>
+      <span class="subtitle">Vowel triangle drill</span>
+      <ol>
+        <li><strong>아</strong>: 입을 세로로 크게.</li>
+        <li><strong>이</strong>: 입꼬리 최대한 옆으로.</li>
+        <li><strong>우</strong>: 입술을 작게 모아 앞으로.</li>
+        <li>세 입모양을 정확히 구분해야 발음이 또렷해져요.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Announcer Scripts -->
+<section class="content-section" id="scripts">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅳ. ANNOUNCER</span>
+    </div>
+    <div>
+      <h2 class="section-title">아나운서 멘트</h2>
+      <p class="section-subtitle">— read aloud in your E voice</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 30px; color: var(--ink-soft); max-width: 700px;">
+    <strong style="color: var(--terracotta);">/</strong> 표시에서는 짧게 쉬어가세요. 문장 끝은 내려서 마무리. 천천히, 또박또박, 미 음역대를 유지하며 읽어보세요.
+  </p>
+
+  <div class="script-tabs">
+    <button class="tab-btn active" data-tab="news">뉴스 오프닝</button>
+    <button class="tab-btn" data-tab="weather">날씨</button>
+    <button class="tab-btn" data-tab="narration">내레이션</button>
+    <button class="tab-btn" data-tab="intro">행사 멘트</button>
+  </div>
+
+  <!-- News -->
+  <div class="script-panel active" id="news">
+    <div class="script-card">
+      <span class="script-label">News Opening · 01</span>
+      <div class="script-title">저녁 뉴스 오프닝</div>
+      <div class="script-body">
+        <p>시청자 여러분<span class="pause"> / </span>안녕하십니까.<span class="pause"> / / </span>4월 24일 금요일<span class="pause"> / </span>저녁 뉴스입니다.</p>
+        <p>오늘도<span class="pause"> / </span>하루의 가장 중요한 소식을<span class="pause"> / </span>정확하고 차분하게<span class="pause"> / </span>전해드리겠습니다.<span class="pause"> / / </span>첫 번째 소식부터 보시겠습니다.</p>
+      </div>
+    </div>
+    <div class="script-card">
+      <span class="script-label">News Opening · 02</span>
+      <div class="script-title">아침 뉴스 오프닝</div>
+      <div class="script-body">
+        <p>오늘의 아침을<span class="pause"> / </span>함께 여는 뉴스.<span class="pause"> / / </span>상쾌한 하루 시작하고 계신지요.<span class="pause"> / / </span>지난 밤사이<span class="pause"> / </span>국내외 주요 소식을<span class="pause"> / </span>간추려 전해드립니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weather -->
+  <div class="script-panel" id="weather">
+    <div class="script-card">
+      <span class="script-label">Weather · 01</span>
+      <div class="script-title">봄날의 날씨</div>
+      <div class="script-body">
+        <p>오늘 전국은<span class="pause"> / </span>대체로 맑은 가운데<span class="pause"> / </span>낮 동안 기온이 크게 올라<span class="pause"> / </span>포근하겠습니다.</p>
+        <p>아침 최저기온은<span class="pause"> / </span>서울 8도<span class="pause"> / </span>춘천 6도<span class="pause"> / </span>부산 11도를 기록하겠고<span class="pause"> / </span>낮 최고기온은<span class="pause"> / </span>전국 대부분 지역이<span class="pause"> / </span>20도 안팎까지 오르겠습니다.<span class="pause"> / / </span>꽃가루 농도가 높으니<span class="pause"> / </span>알레르기가 있으신 분들은<span class="pause"> / </span>주의하시기 바랍니다.</p>
+      </div>
+    </div>
+    <div class="script-card">
+      <span class="script-label">Weather · 02</span>
+      <div class="script-title">비 소식</div>
+      <div class="script-body">
+        <p>현재 제주도부터<span class="pause"> / </span>비가 시작되고 있습니다.<span class="pause"> / / </span>이 비는 내일 새벽<span class="pause"> / </span>수도권까지 북상하며<span class="pause"> / </span>전국으로 확대되겠습니다.</p>
+        <p>예상 강수량은<span class="pause"> / </span>많은 곳은 80밀리미터가 넘겠으니<span class="pause"> / </span>갑작스러운 집중호우에<span class="pause"> / </span>유의하시기 바랍니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Narration -->
+  <div class="script-panel" id="narration">
+    <div class="script-card">
+      <span class="script-label">Narration · 01</span>
+      <div class="script-title">다큐멘터리 오프닝</div>
+      <div class="script-body">
+        <p>사람은<span class="pause"> / </span>하루에 약 1만 6천 번<span class="pause"> / </span>말을 한다고 합니다.<span class="pause"> / / </span>그중에<span class="pause"> / </span>정말로 내 목소리였던 말은<span class="pause"> / </span>몇 번이나 될까요.</p>
+        <p>오늘<span class="pause"> / </span>우리는<span class="pause"> / </span>잊고 있던 자신의 소리를 찾아<span class="pause"> / </span>긴 여정을 떠납니다.</p>
+      </div>
+    </div>
+    <div class="script-card">
+      <span class="script-label">Narration · 02</span>
+      <div class="script-title">감성 내레이션</div>
+      <div class="script-body">
+        <p>바람이 부는 날<span class="pause"> / </span>오래된 골목을 걷다 보면<span class="pause"> / </span>익숙한 풍경이<span class="pause"> / </span>조금은 다르게 보일 때가 있다.</p>
+        <p>변한 건<span class="pause"> / </span>풍경이 아니라<span class="pause"> / </span>오늘의 나일지도 모른다.<span class="pause"> / / </span>그래서<span class="pause"> / </span>우리는 계속해서<span class="pause"> / </span>같은 길을 걷는다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="script-panel" id="intro">
+    <div class="script-card">
+      <span class="script-label">Event · 01</span>
+      <div class="script-title">결혼식 사회 오프닝</div>
+      <div class="script-body">
+        <p>안녕하십니까.<span class="pause"> / </span>오늘<span class="pause"> / </span>이 뜻깊은 자리를 빛내주시기 위해<span class="pause"> / </span>귀한 걸음 해주신 여러분께<span class="pause"> / </span>진심으로 감사의 말씀을 드립니다.</p>
+        <p>잠시 후<span class="pause"> / </span>두 사람의<span class="pause"> / </span>아름다운 시작을 함께하는<span class="pause"> / </span>결혼식이 진행될 예정입니다.<span class="pause"> / / </span>따뜻한 축하의 마음으로<span class="pause"> / </span>끝까지 함께해 주시기 바랍니다.</p>
+      </div>
+    </div>
+    <div class="script-card">
+      <span class="script-label">Event · 02</span>
+      <div class="script-title">세미나 오프닝</div>
+      <div class="script-body">
+        <p>바쁘신 가운데에도<span class="pause"> / </span>오늘 자리에 함께해 주신<span class="pause"> / </span>모든 분들께 감사드립니다.<span class="pause"> / / </span>지금부터<span class="pause"> / </span>본 행사를 시작하도록 하겠습니다.</p>
+        <p>원활한 진행을 위해<span class="pause"> / </span>휴대전화는 진동으로<span class="pause"> / </span>전환해 주시면 감사하겠습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Tongue Twisters -->
+<section class="content-section twister-section" id="twister">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅴ. TONGUE TWISTERS</span>
+    </div>
+    <div>
+      <h2 class="section-title">잰말 놀이</h2>
+      <p class="section-subtitle">— twist your tongue, train your mouth</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 20px; color: var(--ink-soft); max-width: 700px;">
+    천천히 정확하게 3번 → 보통 속도로 3번 → 빠르게 3번. <br>
+    오늘 연습한 문장은 오른쪽 원을 눌러 체크하세요. (브라우저에 저장됩니다)
+  </p>
+
+  <div class="twister-container" id="twister-list">
+    <!-- Items injected by JS -->
+  </div>
+
+  <button class="reset-btn" id="reset-btn">기록 초기화</button>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Modeling Practice -->
+<section class="content-section" id="modeling">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅵ. MODELING</span>
+    </div>
+    <div>
+      <h2 class="section-title">모델링 연습법</h2>
+      <p class="section-subtitle">— become the voice you admire</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 40px; color: var(--ink-soft); max-width: 720px; font-size: 16px; line-height: 1.9;">
+    <strong>모델링(Modeling)</strong>은 닮고 싶은 사람의 발성·리듬·쉼·강조 패턴을 분해해서 내 것으로 체화하는
+    정통 화술 훈련법이에요. 성대 구조는 타고나지만, <span style="color: var(--terracotta);">톤을 만드는 말하기 방식</span>은
+    전부 학습할 수 있어요. 목표는 '흉내'가 아니라 '흡수'예요 — 그 사람의 좋은 습관을 내 말투 위에 얹는 것.
+  </p>
+
+  <div class="modeling-steps">
+    <div class="step-card">
+      <div class="step-head">
+        <span class="step-num">01</span>
+        <h3>클립 선별</h3>
+      </div>
+      <p class="step-body">
+        <strong>30초~1분</strong> 짜리 짧은 구간을 고르세요. 뉴스 오프닝, 인터뷰 질문 하나, 
+        내레이션 한 문단 정도. 너무 길면 디테일을 놓쳐요.
+      </p>
+      <div class="step-hint">
+        💡 첫 주엔 뉴스룸 오프닝 하나로 시작. 익숙해지면 인터뷰·예능으로 확장.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <span class="step-num">02</span>
+        <h3>악보 그리기</h3>
+      </div>
+      <p class="step-body">
+        클립을 받아쓰기하듯 문장을 옮겨 적고, 들으면서 기호로 표시하세요.
+      </p>
+      <div class="notation">
+        <div class="notation-row"><code>/</code><span>짧은 쉼</span></div>
+        <div class="notation-row"><code>//</code><span>긴 쉼</span></div>
+        <div class="notation-row"><code>•단어•</code><span>강조된 단어</span></div>
+        <div class="notation-row"><code>↗</code><span>올라가는 억양</span></div>
+        <div class="notation-row"><code>↘</code><span>내려가는 억양</span></div>
+        <div class="notation-row"><code>~</code><span>천천히 늘여서</span></div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <span class="step-num">03</span>
+        <h3>쉐도잉 반복</h3>
+      </div>
+      <p class="step-body">
+        원본을 <strong>0.75배속</strong>으로 틀고 그림자처럼 따라 말하세요.
+        첫날은 입모양만, 둘째날부터 소리 내서. 한 문장 <strong>20번씩</strong>.
+      </p>
+      <div class="step-hint">
+        💡 유튜브 설정 > 재생 속도 > 0.75. 이어폰 한쪽만 끼고 따라 하면 내 소리도 들려요.
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-head">
+        <span class="step-num">04</span>
+        <h3>녹음 &amp; 비교</h3>
+      </div>
+      <p class="step-body">
+        원본 다음 바로 내 녹음을 재생. 아래 체크리스트로 차이를 구체적으로 찾아요.
+        추상적인 "비슷한데/다른데"가 아니라 <strong>어느 지점이 다른지</strong> 표시.
+      </p>
+      <ul class="compare-check">
+        <li>속도 (빠르다 / 느리다)</li>
+        <li>쉼 위치 (일치 / 어긋남)</li>
+        <li>문장 끝 처리 (올림 / 내림)</li>
+        <li>강조 단어 (같음 / 다름)</li>
+        <li>전체 톤의 높이</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="practice-log">
+    <div class="log-header">
+      <div>
+        <h3>오늘의 연습 기록</h3>
+        <p>오늘 연습한 클립 제목과 느낀 점을 적어두세요. 브라우저에 저장돼요.</p>
+      </div>
+      <span class="log-count" id="log-count">0개</span>
+    </div>
+    <textarea id="log-input" placeholder="예) 뉴스룸 2023.11.04 오프닝 — 내가 문장 끝을 올리는 버릇이 있었음. 강지영은 '었습니다' 끝을 살짝 내림."></textarea>
+    <div class="log-actions">
+      <button class="log-btn primary" id="log-save">기록 저장</button>
+      <button class="log-btn" id="log-toggle">지난 기록 보기</button>
+    </div>
+    <div class="log-list" id="log-list" style="display: none;"></div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Pitch Monitor -->
+<section class="content-section" id="pitch">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅶ. PITCH MONITOR</span>
+    </div>
+    <div>
+      <h2 class="section-title">실시간 피치 모니터</h2>
+      <p class="section-subtitle">— see your voice, find your E</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 30px; color: var(--ink-soft); max-width: 720px; line-height: 1.9;">
+    마이크에 대고 <strong>"아~"</strong>나 편안한 문장을 말해보세요.
+    지금 내 목소리가 어느 음인지 실시간으로 표시돼요. 초록색 영역이 내 목표 범위
+    <strong>미(E3 ~ E4)</strong>. 이 안에서 말하는 감각을 몸에 익히는 게 목표예요.
+  </p>
+
+  <div class="pitch-monitor">
+    <!-- Status Bar -->
+    <div class="pitch-status">
+      <div class="status-left">
+        <span class="status-dot" id="status-dot"></span>
+        <span class="status-text" id="status-text">마이크 꺼짐</span>
+      </div>
+      <button class="mic-btn" id="mic-btn">
+        <span id="mic-btn-text">🎤 마이크 켜기</span>
+      </button>
+    </div>
+
+    <!-- Main Display -->
+    <div class="pitch-display">
+      <div class="pitch-reading">
+        <div class="pitch-note" id="pitch-note">—</div>
+        <div class="pitch-freq" id="pitch-freq">0 Hz</div>
+        <div class="pitch-feedback" id="pitch-feedback">마이크를 켜고 소리를 내보세요</div>
+      </div>
+
+      <!-- Piano Roll -->
+      <div class="piano-wrap">
+        <div class="piano-label top">높음</div>
+        <div class="piano-roll" id="piano-roll">
+          <!-- Note markers injected by JS -->
+          <div class="target-zone" id="target-zone"></div>
+          <div class="pitch-indicator" id="pitch-indicator"></div>
+        </div>
+        <div class="piano-label bottom">낮음</div>
+      </div>
+    </div>
+
+    <!-- History Graph -->
+    <div class="pitch-history-wrap">
+      <div class="history-header">
+        <h4>최근 10초</h4>
+        <span class="history-legend">
+          <span class="legend-item"><span class="legend-dot target"></span>목표 범위</span>
+          <span class="legend-item"><span class="legend-dot current"></span>내 목소리</span>
+        </span>
+      </div>
+      <canvas id="pitch-history" width="800" height="160"></canvas>
+    </div>
+
+    <!-- Stats -->
+    <div class="pitch-stats">
+      <div class="stat-item">
+        <div class="stat-label">평균 음</div>
+        <div class="stat-value" id="stat-avg">—</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">목표 범위 유지</div>
+        <div class="stat-value" id="stat-accuracy">—</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">측정 시간</div>
+        <div class="stat-value" id="stat-duration">0초</div>
+      </div>
+      <button class="stat-reset" id="stat-reset">기록 리셋</button>
+    </div>
+
+    <!-- How to -->
+    <div class="pitch-guide">
+      <h4>사용 팁</h4>
+      <ol>
+        <li><strong>조용한 곳</strong>에서 해보세요. 주변 소음이 있으면 음 감지가 흔들려요.</li>
+        <li>처음엔 <strong>"음~"</strong>으로 길게 내보고, 익숙해지면 짧은 문장으로.</li>
+        <li>목표 범위(E3~E4) 안에 들어오면 <strong>초록 피드백</strong>이 떠요.</li>
+        <li>평균이 목표보다 <strong>높으면</strong> 평소보다 한 톤 낮춰서 시도.</li>
+        <li>하루 3~5분이면 충분. 매일 같은 시간에 측정하면 변화가 보여요.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="divider">♪ ♫ ♪</div>
+
+<!-- Resources -->
+<section class="content-section" id="resources">
+  <div class="section-header">
+    <div>
+      <span class="section-number">Ⅷ. RESOURCES</span>
+    </div>
+    <div>
+      <h2 class="section-title">영상 자료실</h2>
+      <p class="section-subtitle">— curated clips for daily practice</p>
+    </div>
+  </div>
+
+  <p style="margin-bottom: 40px; color: var(--ink-soft); max-width: 720px;">
+    모델링 연습에 쓸 수 있는 자료를 유형별로 모았어요.
+    <strong>뉴스 → 인터뷰 → 예능</strong> 순서로 단계를 밟으면 좋아요.
+    뉴스는 공식 멘트, 인터뷰는 자연스러운 화술, 예능은 일상 톤을 볼 수 있어요.
+  </p>
+
+  <div class="resource-grid">
+    <!-- 뉴스룸 -->
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=강지영+뉴스룸+오프닝" target="_blank" rel="noopener">
+      <div class="resource-icon">📰</div>
+      <div class="resource-level">Level 1 · 뉴스</div>
+      <h3>JTBC 뉴스룸 오프닝</h3>
+      <p>공식적이고 정제된 발성. 문장 끝 내림과 쉼 위치를 배우기에 가장 좋은 자료.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 속도 · 쉼 · 문장 끝 처리
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=강지영+뉴스룸+인터뷰" target="_blank" rel="noopener">
+      <div class="resource-icon">🎙</div>
+      <div class="resource-level">Level 2 · 인터뷰</div>
+      <h3>뉴스룸 인터뷰 코너</h3>
+      <p>강지영 앵커 트레이드마크. 질문 길이, 호응 타이밍, 공감 표현을 관찰하세요.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 짧은 질문 · 호응 · 따라가는 질문
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=강지영+정치부회의+현장" target="_blank" rel="noopener">
+      <div class="resource-icon">📡</div>
+      <div class="resource-level">Level 2 · 현장</div>
+      <h3>정치부회의 · 현장 브리핑</h3>
+      <p>스튜디오보다 생동감 있는 전달. 현장에서 정보를 요약·압축하는 방식을 볼 수 있어요.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 요약력 · 긴박함 속 차분함
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/@JTBCnews" target="_blank" rel="noopener">
+      <div class="resource-icon">▶</div>
+      <div class="resource-level">Channel</div>
+      <h3>JTBC News 공식 채널</h3>
+      <p>뉴스룸·정치부회의 등 공식 클립이 모여 있어요. 검색창에 "강지영"으로 필터링.</p>
+      <div class="resource-focus">
+        <span>URL:</span> youtube.com/@JTBCnews
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=요정재형+강지영" target="_blank" rel="noopener">
+      <div class="resource-icon">🎤</div>
+      <div class="resource-level">Level 3 · 토크</div>
+      <h3>요정재형 출연분</h3>
+      <p>2023년 12월, JTBC 외 첫 외부 출연. 인터뷰이로서의 솔직하고 편안한 톤이 잘 드러나요.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 일상 톤 · 웃음 섞인 말하기
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=강지영+고나리자" target="_blank" rel="noopener">
+      <div class="resource-icon">💬</div>
+      <div class="resource-level">Level 3 · 예능</div>
+      <h3>고나리자 (스튜디오헤이)</h3>
+      <p>2024년 시작한 유튜브 콘텐츠. 아나운서 뉴스톤이 아닌 편안한 대화체의 강지영을 볼 수 있어요.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 대화 리듬 · 자연스런 반응
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=강지영+라디오스타" target="_blank" rel="noopener">
+      <div class="resource-icon">⭐</div>
+      <div class="resource-level">Level 3 · 예능</div>
+      <h3>MBC 라디오스타 (2025.06)</h3>
+      <p>프리랜서 선언 후 첫 예능 출연. "자유인 강지영"이라는 자기소개와 편한 말투 확인.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 자기소개 톤 · 자신감
+      </div>
+    </a>
+
+    <a class="resource-card" href="https://www.youtube.com/results?search_query=강지영+우먼센스+90초+인터뷰" target="_blank" rel="noopener">
+      <div class="resource-icon">📸</div>
+      <div class="resource-level">Short</div>
+      <h3>우먼센스 90초 인터뷰</h3>
+      <p>짧은 쇼츠 형식. 빠르게 대답하는 상황에서도 톤이 흔들리지 않는 점을 관찰.</p>
+      <div class="resource-focus">
+        <span>Focus:</span> 즉답 상황의 톤 유지
+      </div>
+    </a>
+
+  </div>
+
+  <div class="resource-tip">
+    <div class="tip-label">Practice Tip</div>
+    <p>
+      <strong>주 1클립 원칙</strong> — 한 주에 한 클립만 깊게 파세요.
+      같은 30초를 월요일엔 그냥 듣고, 화요일에 악보 그리고, 수~금요일에 쉐도잉,
+      토요일에 녹음 비교. 얕게 많이보다 <strong>깊게 반복</strong>이 체화를 만들어요.
+    </p>
+  </div>
+</section>
+<footer>
+  <div class="footer-title">목소리는 나를 닮아간다</div>
+  <div class="footer-quote">
+    "Finding your voice isn't about changing who you are.<br>
+    It's about letting who you are finally speak."
+  </div>
+  <div class="footer-meta">MY VOICE JOURNAL · 미(E) NOTE</div>
+</footer>
+
+</div>
+<script src="/js/weather.js"></script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>
